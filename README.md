@@ -23,8 +23,7 @@ Executable File:
 - The `ImageSequencerCompressor.exe` is the executable version of the script, which can be run on Windows without the need for a Python installation.
 - Simply download and place it in the root directory where you wish to process images.
 - Run the executable to start the compression process.
-
-- 
+ 
 ## Requirements
 - Python 3.x
 - Basic knowledge of command line operations
