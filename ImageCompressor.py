@@ -18,21 +18,35 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+# English:
+# ImageSequencerCompressor.py: A Python script to compress sequential images in folders.
+# It searches for image sequences and compresses them into ZIP files, keeping only the first image.
+
+# Türkçe:
+# ImageSequencerCompressor.py: Klasörlerdeki ardışık resimleri sıkıştırmak için bir Python betiği.
+# Resim dizilerini arar ve sadece ilk resmi tutarak bunları ZIP dosyalarına sıkıştırır.
+
+# العربية:
+# ImageSequencerCompressor.py: سكربت بايثون لضغط الصور المتسلسلة في المجلدات.
+# يبحث عن تسلسلات الصور ويضغطها في ملفات ZIP، مع الاحتفاظ بالصورة الأولى فقط.
+
 import os
 import re
 import zipfile
 
 def find_folders_for_compression(base_path):
+    # This function searches for image sequences in the given directory and its subdirectories.
     folders_to_compress = {}
     for root, dirs, files in os.walk(base_path):
         files_dict = {}
         for file in files:
-            # تعديل التعبير النمطي ليدعم الأنماط المختلفة
+            # Match files based on the naming pattern.
             match = re.match(r'(.*?)(\(\d+\))?(\d+)\.png', file)
             if match:
                 key = match.group(1)
                 files_dict.setdefault(key, []).append(file)
 
+        # Add folders with more than 10 matching files to the list for compression.
         for key, file_list in files_dict.items():
             if len(file_list) >= 10:
                 folders_to_compress[root] = (key, file_list)
@@ -40,6 +54,7 @@ def find_folders_for_compression(base_path):
     return folders_to_compress
 
 def ask_to_compress(folders_to_compress):
+    # Ask the user whether to compress the identified folders.
     if not folders_to_compress:
         print("No sequential images were found to compress.")
         return
@@ -51,18 +66,23 @@ def ask_to_compress(folders_to_compress):
         compress_folders(folders_to_compress)
 
 def compress_folders(folders_to_compress):
+    # Compress the images in each folder and delete all but the first image.
     for folder, (key, file_list) in folders_to_compress.items():
         zip_filename = os.path.join(folder, f'{key}.zip')
         with zipfile.ZipFile(zip_filename, 'w') as zipf:
             for file in file_list:
                 zipf.write(os.path.join(folder, file), file)
 
+        # Delete all but the first image.
         for file in file_list[1:]:
             os.remove(os.path.join(folder, file))
 
         print(f'Compressed {len(file_list)} images into {zip_filename} and kept the first one.')
 
-# تحديد المسار الحالي كمسار أساسي للبحث
-base_path = os.getcwd()
-folders_to_compress = find_folders_for_compression(base_path)
-ask_to_compress(folders_to_compress)
+# Main execution
+if __name__ == "__main__":
+    # Set the current directory as the base path for searching images.
+    base_path = os.getcwd()
+    folders_to_compress = find_folders_for_compression(base_path)
+    ask_to_compress(folders_to_compress)
+
