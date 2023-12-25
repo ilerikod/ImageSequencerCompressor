@@ -1,3 +1,33 @@
+# Copyright (c) 2023 IleriKod Solutions
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+# ImageSequencerCompressor.py: A Python script to compress sequential images in folders.
+# It searches for image sequences and compresses them into ZIP files, keeping only the first image.
+
+# ImageSequencerCompressor.py: Klasörlerdeki ardışık resimleri sıkıştırmak için bir Python betiği.
+# Resim dizilerini arar ve sadece ilk resmi tutarak bunları ZIP dosyalarına sıkıştırır.
+
+# ImageSequencerCompressor.py: سكربت بايثون لضغط الصور المتسلسلة في المجلدات.
+# يبحث عن تسلسلات الصور ويضغطها في ملفات ZIP، مع الاحتفاظ بالصورة الأولى فقط.
+
+
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk, scrolledtext
 import os
